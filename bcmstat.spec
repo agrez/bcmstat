@@ -1,8 +1,8 @@
-%global     commit 9777d1d50747ef8076ba9792ff27f532f9740941
+%global     commit 6d6ba36a3181675ff656750d8958efbe13563941
 %global     commit_short %(c=%{commit}; echo ${c:0:7})
 
 Name:       bcmstat
-Version:    0.4.2
+Version:    0.4.3
 Release:    1.%{commit_short}%{?dist}
 Summary:    Simple Raspberry Pi command line monitoring tool
 License:    GPLv2
@@ -46,6 +46,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jan 02 2017 Vaughan <devel at agrez dot net> - 0.4.3-1.6d6ba36
+- New release
+- Git commit: 6d6ba36a3181675ff656750d8958efbe13563941
+
 * Fri Sep 16 2016 Vaughan <devel at agrez dot net> - 0.4.2-1.9777d1d
 - Initial package
 - Git commit: 9777d1d50747ef8076ba9792ff27f532f9740941
