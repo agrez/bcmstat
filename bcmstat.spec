@@ -1,15 +1,15 @@
-%global     commit 3806935e3647cfa0bcde9c22e6b3b5e4544743c4
+%global     commit cbd2fd5a24aa82c2f0d500491266acd4e445e221
 %global     commit_short %(c=%{commit}; echo ${c:0:7})
 
 Name:       bcmstat
-Version:    0.5.0
+Version:    0.5.1
 Release:    1.%{commit_short}%{?dist}
 Summary:    Simple Raspberry Pi command line monitoring tool
 License:    GPLv2
 URL:        https://github.com/MilhouseVH/%{name}
 Source0:    https://github.com/MilhouseVH/%{name}/archive/%{commit}.tar.gz#/%{name}-%{version}-%{commit_short}.tar.gz
 BuildArch:	noarch
-Requires:	python
+Requires:	python3
 
 
 %description
@@ -30,6 +30,10 @@ Memory leak detection (D/A options - instantaneous and accumulated memory deltas
 
 
 %build
+%if 0%{?fedora} > 29
+# Change shebang in all relevant files in this directory and all subdirectories
+find -type f -exec sed -iE '1s=^#! */usr/bin/\(python\|env python\)[23]\?=#!%{__python3}=' {} +
+%endif
 
 
 %install
@@ -46,6 +50,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sat Apr 20 2019 Vaughan <devel at agrez dot net> - 0.5.1-1.cbd2fd5
+- New release
+- Fix python shebang for Fedora 30
+
 * Thu Oct 11 2018 Vaughan <devel at agrez dot net> - 0.5.0-1.3806935
 - New release
 
